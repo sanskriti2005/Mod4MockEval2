@@ -1,4 +1,4 @@
-import { Container, Box, Text, Button } from "@chakra-ui/react";
+import { Container, Box, Text, Button, VStack, HStack } from "@chakra-ui/react";
 import { deleteNote, editNote, fetchNotes } from "../redux/actions";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,20 +32,22 @@ const NoteList = () => {
       {loading ? (
         <h2>Loading...</h2>
       ) : notes.length > 0 ? (
-        <Container>
+        <VStack gap={4}>
           {notes.map((note) => {
             return (
               <Box key={note.id}>
                 {editId != note.id ? (
-                  <Box>
+                  <VStack padding={8} height={'200px'} width={'500px'} textAlign={'center'} justify={'space-between'} border={'2px solid white'}>
                     <Text>{note.note}</Text>
+                    <HStack justify={'space-between'}>
                     <Button onClick={() => dispatch(deleteNote(note.id))}>
                       Delete
                     </Button>
                     <Button onClick={() => handleSetEdit(note.id, note.note)}>
                       Edit
                     </Button>
-                  </Box>
+                    </HStack>
+                  </VStack>
                 ) : (
                   <Box>
                     <input
@@ -65,7 +67,7 @@ const NoteList = () => {
               </Box>
             );
           })}
-        </Container>
+        </VStack>
       ) : (
         <h2>No notes</h2>
       )}

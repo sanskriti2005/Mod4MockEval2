@@ -12,7 +12,7 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import { Button } from "@chakra-ui/react";
+import { Button, Container, Flex, VStack } from "@chakra-ui/react";
 import app from "./firebase/firebaseConfig";
 import { logOut } from "./redux/actions";
 
@@ -27,18 +27,19 @@ function App() {
   };
   return (
     <>
-      {user ? (
-        <div>
-          <Button onClick={handleSignOut}>Logout</Button>
-          <NoteForm />
-          <NoteList />
-        </div>
-      ) : (
-        <div>
-          <Login />
-          <Button onClick={handleSignOut}>Logout</Button>
-        </div>
-      )}
+      <Flex justify={'center'} align={'center'} p={10}>
+        {user ? (
+          <VStack align={'center'}>
+            <Button onClick={handleSignOut}>Logout</Button>
+            <NoteForm />
+            <NoteList />
+          </VStack>
+        ) : (
+          <div>
+            <Login />
+          </div>
+        )}
+      </Flex>
     </>
   );
 }

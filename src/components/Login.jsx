@@ -11,13 +11,9 @@ const Login = () => {
   const handleSignUp = async () => {
     dispatch(loginSucces())
   };
-
-  
-
   return (
     <div>
       <Button onClick={handleSignUp}>Signin with Google</Button>
-      
     </div>
   );
 };
