@@ -1,4 +1,4 @@
-import { ADD_NOTE } from "../actions";
+import { ADD_NOTE, NOTES_ERROR, NOTES_FETCH_SUCCESS, NOTES_LOADING } from "../actions";
 
 const initState = {
   notes: [],
@@ -8,6 +8,12 @@ const initState = {
 
 export const notesReducer = (state=initState, action) => {
     switch(action.type){
+        case NOTES_LOADING:
+            return {...state, loading: action.payload}
+        case NOTES_FETCH_SUCCESS:
+            return {...state, notes: action.payload}
+        case NOTES_ERROR:
+            return {...state, error: action.payload}
         case ADD_NOTE:
             return {...state, notes: [...state.notes, action.payload]}
         default:

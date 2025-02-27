@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import NoteForm from './components/NoteForm'
+import NoteList from './components/NoteList'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -10,6 +11,7 @@ function App() {
   return (
     <>
       <NoteForm/>
+      <NoteList/>
     </>
   )
 }
