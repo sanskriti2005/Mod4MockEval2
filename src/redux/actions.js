@@ -6,7 +6,6 @@ export const NOTES_ERROR = "NOTES_ERROR";
 export const ADD_NOTE = "ADD_NOTE";
 export const EDIT_NOTE = "EDIT_NOTE";
 export const DELETE_NOTE = "DELETE_NOTE";
-
 export const fetchNotes = () => async (dispatch) => {
   try {
     dispatch({ type: NOTES_LOADING, payload: true });
@@ -41,7 +40,6 @@ export const addNotes = (noteObj) => async (dispatch) => {
 };
 
 export const deleteNote = (id) => async (dispatch) => {
-    console.log(id)
     try {
         const res = await axios.delete(`https://mod4mockeval2-default-rtdb.firebaseio.com/notes/${id}.json`)
         dispatch({type: DELETE_NOTE, payload: id})
@@ -50,4 +48,14 @@ export const deleteNote = (id) => async (dispatch) => {
         console.log(error)
     }
 
+}
+
+export const editNote = (obj) => async (dispatch) => {
+    try {
+        const res = await axios.patch(`https://mod4mockeval2-default-rtdb.firebaseio.com/notes/${obj.id}.json`, obj)
+        dispatch({type:EDIT_NOTE, payload: obj})
+        alert('Note succefully edited!')
+    } catch (error) {
+        console.log(error)
+    }
 }

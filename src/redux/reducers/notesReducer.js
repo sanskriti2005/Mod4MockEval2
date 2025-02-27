@@ -1,4 +1,4 @@
-import { ADD_NOTE, DELETE_NOTE, NOTES_ERROR, NOTES_FETCH_SUCCESS, NOTES_LOADING } from "../actions";
+import { ADD_NOTE, DELETE_NOTE, EDIT_NOTE, NOTES_ERROR, NOTES_FETCH_SUCCESS, NOTES_LOADING } from "../actions";
 
 const initState = {
   notes: [],
@@ -8,6 +8,9 @@ const initState = {
 
 export const notesReducer = (state=initState, action) => {
     switch(action.type){
+        case EDIT_NOTE:
+            let updatedNotes = state.notes.map((note)=> note.id != action.payload.id ? note : action.payload)
+            return {...state, notes: updatedNotes}
         case NOTES_LOADING:
             return {...state, loading: action.payload}
         case NOTES_FETCH_SUCCESS:
