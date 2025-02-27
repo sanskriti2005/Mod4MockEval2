@@ -1,5 +1,5 @@
 import { Container, Box, Text, Button } from "@chakra-ui/react";
-import { fetchNotes } from "../redux/actions";
+import { deleteNote, fetchNotes } from "../redux/actions";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -20,7 +20,7 @@ const NoteList = () => {
             return(
               <Box key={note.id}>
                 <Text>{note.note}</Text>
-                <Button>Delete</Button>
+                <Button onClick={() => dispatch(deleteNote(note.id))}>Delete</Button>
                 <Button>Edit</Button>
               </Box>
             );

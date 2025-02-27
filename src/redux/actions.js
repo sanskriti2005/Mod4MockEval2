@@ -4,6 +4,8 @@ export const NOTES_FETCH_SUCCESS = "NOTES_FETCH_SUCCESS";
 export const NOTES_LOADING = "NOTES_LOADING";
 export const NOTES_ERROR = "NOTES_ERROR";
 export const ADD_NOTE = "ADD_NOTE";
+export const EDIT_NOTE = "EDIT_NOTE";
+export const DELETE_NOTE = "DELETE_NOTE";
 
 export const fetchNotes = () => async (dispatch) => {
   try {
@@ -37,3 +39,15 @@ export const addNotes = (noteObj) => async (dispatch) => {
     });
   } catch (error) {}
 };
+
+export const deleteNote = (id) => async (dispatch) => {
+    console.log(id)
+    try {
+        const res = await axios.delete(`https://mod4mockeval2-default-rtdb.firebaseio.com/notes/${id}.json`)
+        dispatch({type: DELETE_NOTE, payload: id})
+        alert('Note succefully deleted')
+    } catch (error) {
+        console.log(error)
+    }
+
+}
